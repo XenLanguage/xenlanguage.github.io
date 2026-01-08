@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <title>Xen Programming Language | Get Started</title>
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-content">
+                <div class="nav-left">
+                    <a href="index.html">Xen</a>
+                </div>
+                <div class="nav-right">
+                    <a href="download.html">Download</a>
+                    <a href="get-started.html">Get Started</a>
+                    <a href="documentation.html">Documentation</a>
+                    <a href="https://github.com/jakerieger/Xen">Source</a>
+                    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/jakerieger/Xen?style=social">
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <article id="get-started">
+                <h1>Get Started</h1>
+                <hr />
+                <p>This page serves as a guide for quickly getting up and running with Xen.</p>
+                <ol>
+                    <li><a href="#installing-xen">Installing Xen</a></li>
+                    <li><a href="#hello-world">Hello World</a></li>
+                    <li><a href="#variables">Variables</a></li>
+                    <li><a href="#functions">Functions</a></li>
+                    <li><a href="#loops">Loops</a></li>
+                    <li><a href="#conditionals">Conditionals</a></li>
+                    <li><a href="#modules-namespaces">Modules / Namespaces</a></li>
+                </ol>
+            </article>
+            <br />
+            <article id="installing-xen">
+                <h2>1. Installing Xen</h2>
+                <p>
+                    Head over to the <a href="download.html">downloads</a> page and download the
+                    appropriate distribution for your system. If your platform doesn't have any
+                    precompiled binaries, you'll need to build Xen from source.
+                </p>
+                <blockquote>
+                    Once you have Xen installed, make sure you add it's bin directory to your
+                    <b style="color: #ababab">PATH</b> environment variable.
+                </blockquote>
+                <h3>Building from source</h3>
+                <p>
+                    In order to build Xen from source, you'll need to make sure your system meets
+                    the following requirements:
+                </p>
+                <ul>
+                    <li>ANSI C Compiler (GCC, Clang, MingW)</li>
+                    <li>Makefile support (Xen doesn't use a build system like CMake or Meson)</li>
+                </ul>
+                <p>
+                    Once you've verified your system requirements, download the source code and
+                    extract the tarball. Then navigate into the project root and run the following
+                    command:
+                </p>
+                <pre>$ make debug <span class="comment"># or release</span></pre>
+                <p>For Windows compilation:</p>
+                <pre>$ make windows-debug <span class="comment"># or windows-release</span></pre>
+                <p>Clean build artifacts:</p>
+                <pre>$ make clean</pre>
+            </article>
+            <br />
+            <article id="hello-world">
+                <h2>2. Hello World</h2>
+                <p>
+                    <i>Hello World</i> in Xen is extremely simple. Create a new text file with the
+                    extension
+                    <code>.xen</code>
+                    and add the following line to it:
+                </p>
+                <pre>
+<span class="keyword">include</span> io;
+io.<span class="member">println</span>(<span class="literal">"Hello World"</span>);</pre>
+                <br />
+                <p>You can then run this program by running the following command:</p>
+                <pre>$ xen hello-world.xen</pre>
+            </article>
+            <br />
+            <article id="variables">
+                <h2>3. Variables</h2>
+                <p>
+                    Variables in Xen are defined with the
+                    <code>var</code> keyword. Variable names can contain letters, numbers and the
+                    underscore (<code>_</code>) and can have a maximum length of 64 characters. They
+                    cannot begin with a number. Any valid Xen object can be assigned to a variable,
+                    including functions.
+                </p>
+
+                <pre>
+<span class="keyword">var</span> x         = <span class="literal">10</span>;       <span class="comment"># valid</span>
+<span class="keyword">var</span> _         = <span class="literal">"hello"</span>;  <span class="comment"># valid</span>
+<span class="keyword">var</span> my_var_80 = <span class="literal">0.1</span>;      <span class="comment"># valid</span>
+<span class="keyword">var</span> 5_times   = <span class="literal">null</span>;     <span class="comment"># invalid</span>
+</pre>
+            </article>
+            <br />
+            <article id="functions">
+                <h2>4. Functions</h2>
+                <p>
+                    Functions in Xen are defined with the
+                    <code>fn</code> keyword. Function names follow all the same rules as variable
+                    names.
+                </p>
+
+                <pre>
+<span class="keyword">fn</span> <span class="member">inv_mod</span>(<span class="literal">a</span>, <span class="literal">b</span>) {
+    <span class="keyword">return</span> -a % -b;
+}
+</pre>
+            </article>
+        </div>
+
+        <footer>
+            <p>Copyright &copy; 2025 Jake Rieger. All Rights Reserved.</p>
+        </footer>
+    </body>
+</html>
