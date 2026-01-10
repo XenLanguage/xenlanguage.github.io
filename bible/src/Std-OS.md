@@ -10,19 +10,19 @@ include os;
 
 ### readtxt
 ```ts
-readtxt (value: any, ...) -> string | null
+readtxt (filename: string) -> string | null
 ```
 Reads a file to a string.
 
 ### readlines
 ```ts
-readlines (value: any, ...) -> [string] | null
+readlines (filename: string) -> [string] | null
 ```
 Read a file's lines into an array.
 
 ### readbytes
 ```ts
-readbytes (prefix: string) -> UInt8Array | null
+readbytes (filename: string) -> UInt8Array | null
 ```
 Read a file into a byte array.
 
@@ -66,4 +66,4 @@ Returns whether the given directory or file exists.
 ```ts
 sleep (duration: number) -> number
 ```
-Sleeps the current process for `duraation` seconds.
+Sleeps the current process for `duration` seconds.

@@ -18,13 +18,13 @@ Returns the number of characters in the string.
 ```ts
 upper (str: string) -> string | null
 ```
-Converts the given string to **UPPERCASE**.
+Converts the given string to `UPPERCASE`.
 
 ### lower
 ```ts
 lower (str: string) -> string | null
 ```
-Converts the given string to **lowercase**.
+Converts the given string to `lowercase`.
 
 ### substr
 ```ts

@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-70148bb7.js";
+            window.path_to_searchindex_js = "searchindex-6f9d7d21.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-fd402382.js"></script>
@@ -180,12 +180,63 @@
 <p>With that being said, this guide serves as a hopefully-useful overview of Xen and its current offerings.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<p>Xen ships precompiled binaries for Linux, Windows, and macOS. See your platform below for install instructions.</p>
+<h2 id="linux"><a class="header" href="#linux">Linux</a></h2>
+<p>The easiest way to install Xen on Linux is to run the following command in your terminal:</p>
+<pre><code class="language-bash">curl -f https://raw.githubusercontent.com/jakerieger/Xen/refs/heads/gh-pages/install.sh | sh
+</code></pre>
+<p>You can also download packages for Ubuntu/Debian and Fedora, or just install manually from a tarball.</p>
+<p><a href="https://xenlanguage.github.io/download.html">Download Xen for Linux</a></p>
+<h2 id="windows"><a class="header" href="#windows">Windows</a></h2>
+<p>You can install Xen on Windows via the installer package (.exe) or manually from a zip archive.</p>
+<p><a href="https://xenlanguage.github.io/download.html">Download Xen for Windows</a></p>
+<h2 id="macos"><a class="header" href="#macos">macOS</a></h2>
+<p>Xen has releases for both x64 and ARM64 macOS platforms. To install, download the appropriate tarball for your CPU architecture. Extract it and put the xen executable somewhere in your <strong>PATH</strong> environment variable.</p>
+<p><a href="https://xenlanguage.github.io/download.html">Download Xen for macOS</a></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="building-from-source"><a class="header" href="#building-from-source">Building from Source</a></h1>
+<p>If you prefer to install Xen by building from source, you’ll need a system that support <a href="https://en.wikipedia.org/wiki/Make_(software)#Makefile">makefiles</a> and GCC (or <a href="#compiler-support">Clang</a>).</p>
+<h2 id="cross-compiling"><a class="header" href="#cross-compiling">Cross-Compiling</a></h2>
+<p>Xen uses cross-compilation toolchains for Linux like <a href="https://www.mingw-w64.org/">MinGW</a> and <a href="https://github.com/tpoechtrager/osxcross">osxcross</a> to provide builds for platforms other than Linux. In order to build all platforms without modification to the makefiles requires having these toolchains installed and in your <strong>PATH</strong>.</p>
+<p>If you have all the required toolchains installed, you can run the following command to build targets for all platforms:</p>
+<pre><code>$ make all-platforms
+</code></pre>
+<h2 id="compiler-support"><a class="header" href="#compiler-support">Compiler Support</a></h2>
+<p>By default, Xen uses GCC to build on Linux, MinGW for Windows, and Clang for macOS. MSVC has not been tested in any capacity.</p>
+<h2 id="building-xen"><a class="header" href="#building-xen">Building Xen</a></h2>
+<h3 id="1-get-the-source"><a class="header" href="#1-get-the-source">1. Get the source</a></h3>
+<p><strong>Cloning from GitHub:</strong></p>
+<p>GitHub will have the latest changes but typically contains breaking changes. Checkout a tagged release if stability is what you want.</p>
+<pre><code>$ git clone https://github.com/XenLanguage/Xen
+</code></pre>
+<p><strong>Download source tarball from releases:</strong></p>
+<p>This contains source code from stable releases.</p>
+<pre><code>$ wget https://github.com/jakerieger/Xen/archive/refs/tags/v0.5.3.tar.gz
+</code></pre>
+<h3 id="2-run-make"><a class="header" href="#2-run-make">2. Run <code>make</code></a></h3>
+<pre><code>$ cd Xen
+$ make all
+</code></pre>
+<p>That’s pretty much it. Builds will be located in <code>build/&lt;platform&gt;-&lt;target&gt;</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="developer-tools"><a class="header" href="#developer-tools">Developer Tools</a></h1>
+<p>At the moment, Xen doesn’t have an available language server. It does provide two editor extensions that provide basic syntax highlighting for VS Code and Neovim.</p>
+<ul>
+<li><a href="https://github.com/XenLanguage/Xen-VSCode">Download (VS Code)</a> (Install with <code>Developer &gt; Install Extension from Directory</code>)</li>
+<li><a href="https://github.com/XenLanguage/Xen-Neovim">Download (Neovim)</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="hello-xen"><a class="header" href="#hello-xen">Hello, Xen!</a></h1>
+<p>Let’s kick things off with the canonical “Hello World” example in Xen. Open a new file and add the following to it:</p>
+<pre><code class="language-ts">include io;
+
+io.println("Hello, Xen!");
+</code></pre>
+<p>Save it as <code>hello_xen.xen</code> and close it.</p>
+<p>Now open a terminal and enter the following:</p>
+<pre><code>$ xen hello_xen.xen
+</code></pre>
+<p>You should see “Hello, Xen!” printed to your console. That’s it!</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="the-basics"><a class="header" href="#the-basics">The Basics</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>
@@ -214,7 +265,7 @@
 <h1 id="other-types"><a class="header" href="#other-types">Other Types</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="xenio"><a class="header" href="#xenio">xen::io</a></h1>
-<p>Provides utilities for input and output, including printing text to the console, receiving input from the console, and sleeping.</p>
+<p>Provides utilities for input and output.</p>
 <pre><code class="language-makefile">include io;
 </code></pre>
 <h2 id="public-functions"><a class="header" href="#public-functions">Public Functions</a></h2>
@@ -245,15 +296,15 @@
 </code></pre>
 <h2 id="public-functions-1"><a class="header" href="#public-functions-1">Public Functions</a></h2>
 <h3 id="readtxt"><a class="header" href="#readtxt">readtxt</a></h3>
-<pre><code class="language-ts">readtxt (value: any, ...) -&gt; string | null
+<pre><code class="language-ts">readtxt (filename: string) -&gt; string | null
 </code></pre>
 <p>Reads a file to a string.</p>
 <h3 id="readlines"><a class="header" href="#readlines">readlines</a></h3>
-<pre><code class="language-ts">readlines (value: any, ...) -&gt; [string] | null
+<pre><code class="language-ts">readlines (filename: string) -&gt; [string] | null
 </code></pre>
 <p>Read a file’s lines into an array.</p>
 <h3 id="readbytes"><a class="header" href="#readbytes">readbytes</a></h3>
-<pre><code class="language-ts">readbytes (prefix: string) -&gt; UInt8Array | null
+<pre><code class="language-ts">readbytes (filename: string) -&gt; UInt8Array | null
 </code></pre>
 <p>Read a file into a byte array.</p>
 <h3 id="exit"><a class="header" href="#exit">exit</a></h3>
@@ -283,7 +334,7 @@
 <h3 id="sleep"><a class="header" href="#sleep">sleep</a></h3>
 <pre><code class="language-ts">sleep (duration: number) -&gt; number
 </code></pre>
-<p>Sleeps the current process for <code>duraation</code> seconds.</p>
+<p>Sleeps the current process for <code>duration</code> seconds.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="xenstring"><a class="header" href="#xenstring">xen::string</a></h1>
 <p>Provides utilities for working with <a href="#strings">strings</a>. All of the available functions in this namespace are also available as member functions to string objects.</p>
@@ -297,11 +348,11 @@
 <h3 id="upper"><a class="header" href="#upper">upper</a></h3>
 <pre><code class="language-ts">upper (str: string) -&gt; string | null
 </code></pre>
-<p>Converts the given string to <strong>UPPERCASE</strong>.</p>
+<p>Converts the given string to <code>UPPERCASE</code>.</p>
 <h3 id="lower"><a class="header" href="#lower">lower</a></h3>
 <pre><code class="language-ts">lower (str: string) -&gt; string | null
 </code></pre>
-<p>Converts the given string to <strong>lowercase</strong>.</p>
+<p>Converts the given string to <code>lowercase</code>.</p>
 <h3 id="substr"><a class="header" href="#substr">substr</a></h3>
 <pre><code class="language-ts">substr (str: string, start: number, end: number) -&gt; string | null
 </code></pre>
@@ -530,6 +581,22 @@
         <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
         <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
         <script>

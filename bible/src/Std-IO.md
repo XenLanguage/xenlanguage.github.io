@@ -1,6 +1,6 @@
 # xen::io
 
-Provides utilities for input and output, including printing text to the console, receiving input from the console, and sleeping.
+Provides utilities for input and output.
 
 ```makefile
 include io;
