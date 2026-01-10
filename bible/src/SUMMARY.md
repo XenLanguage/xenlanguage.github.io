@@ -23,6 +23,7 @@
 - [Classes](./Classes.md)
     - [Properties](./Properties.md)
     - [Methods](./Methods.md)
+- [Other Types](./Other-Types.md)
 
 # Standard Library
 
@@ -31,3 +32,5 @@
 - [string](./Std-String.md)
 - [array](./Std-Array.md)
 - [datetime](./Std-Datetime.md)
+- [dictionary](./Std-Dictionary.md)
+- [net](./Std-Net.md)
