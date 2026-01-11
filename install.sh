@@ -73,11 +73,11 @@ main() {
 
 linux() {
     echo "Downloading Xen"
-    curl "https://github.com/jakerieger/Xen/releases/download/v0.5.3/Xen-0.5.3-linux-x64.tar.gz" > "$temp/Xen-0.5.3-linux-x64.tar.gz"
+    curl "https://github.com/jakerieger/Xen/releases/download/v0.5.4/Xen-0.5.4-linux-x64.tar.gz" > "$temp/Xen-0.5.4-linux-x64.tar.gz"
     rm -rf "$HOME/.local/xen"
     mkdir -p "$HOME/.local/xen"
-    tar -xzf "$temp/Xen-0.5.3-linux-x64.tar.gz" -C "$HOME/.local/xen/"
-    rm -f "$temp/Xen-0.5.3-linux-x64.tar.gz"
+    tar -xzf "$temp/Xen-0.5.4-linux-x64.tar.gz" -C "$HOME/.local/xen/"
+    rm -f "$temp/Xen-0.5.4-linux-x64.tar.gz"
 }
 
 main "$@"
