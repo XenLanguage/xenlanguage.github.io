@@ -32,7 +32,7 @@ $ git clone https://github.com/XenLanguage/Xen
 This contains source code from stable releases.
 
 ```
-$ wget https://github.com/jakerieger/Xen/archive/refs/tags/v0.5.4.tar.gz
+$ wget https://github.com/jakerieger/Xen/archive/refs/tags/v0.5.5.tar.gz
 ```
 
 ### 2. Run `make`
